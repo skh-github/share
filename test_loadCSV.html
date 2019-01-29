@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Google Graph and CSV</title>
+
+<script src="https://www.google.com/jsapi"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function drawChart() {
+	drawChart2().toJSON();
+	}
+
+  function drawChart2 () {
+      $.ajax({
+          url: 'input.txt',
+          type: 'get',
+          success: function (txt) {
+              var dataArray = [['Name', 'Date']];
+              var txtArray = txt.split('\n');
+
+              for (var i = 0; i < txtArray.length; i++) {
+                  var tmpData = txtArray[i].split(/\s+/);
+                  dataArray.push([tmpData[0], parseInt(tmpData[1])]);
+              }
+              var data = google.visualization.arrayToDataTable(dataArray);
+			  $("#chart_div").html(data.toJSON());
+			  var jasonString = document.getElementById('chart_div').innerHTML;
+			  var data2 = new google.visualization.DataTable(jasonString) ;
+			  $("#chart_div2").html(data2.toJSON()+"-Khaver");
+				
+			  return;
+          }
+      });
+  }
+  
+  function drawChart0(){
+	alert("0");
+	drawChart2 () ;
+  }
+
+    function drawChart1(){
+	alert("1");
+  }
+  
+  google.load('visualization', '1', {packages:['corechart'], callback: drawChart});
+</script>
+</head>
+<body onload="drawChart0()" > 
+
+<button onclick="drawChart1()">Click me</button>
+
+<div  id="chart_div"></div>
+<div   id="chart_div2"></div>
+</body>
+</html>
