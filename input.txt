@@ -1,0 +1,7 @@
+SE,25275,25275,pink
+UK, TA1 1AD, TA1 1AD, green
+SE,25225,25225,green
+SE,25220,25220,pink
+SE,21532,21532,pink
+DK, 6100, 6100, pink
+DK, 1448, 1448, pink
